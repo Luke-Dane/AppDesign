@@ -92,6 +92,7 @@ function capturing(){
     return; //No pieces to remove
   }
   /* else */
+  removePieces();
 
 }
 
@@ -107,12 +108,27 @@ function checkSurround(){//Checks to see if any pieces still don't have libertie
 }
 
 function removePieces(){
-  console.log("yo")
+  console.log("removing pieces")
+  for( var y = 0; y < pieces.length; y++ ){
+    for( var x = 0; x < 9; x++ ){
+      if( liberties[y][x] == "w" ){
+        liberties[y][x] = "-";
+        captured_white++;
+      }
+      else if( liberties[y][x] == "b" ){
+        liberties[y][x] = "-";
+        captured_black++;
+      }
+    }
+  }
+  console.log( pieces );
+  console.log( "Captured white: " + captured_white + " Captured Black: " + captured_black );
 }
 
 countTerritoryPoints();
 
 function countTerritoryPoints(){
+  console.log("ENDGAME")
   var changed = false;
 
   for( var y = 0; y < pieces.length; y++ ){
@@ -130,7 +146,7 @@ function countTerritoryPoints(){
                     console.log("count black " + black_terr)
               }
               else {
-                pieces[y][x] = "un";//Changes unclaimed territory to 
+                pieces[y][x] = "un";//Changes unclaimed territory to
              }
         }
         else if( pieces[y][x+1] == "wl" || pieces[y][x-1] == "wl" ||
@@ -156,6 +172,8 @@ function countTerritoryPoints(){
     countTerritoryPoints();
   }
   else{
-    capturing();
+    console.log(liberties);
+    console.log( "Black score: " + black_terr + " territory + " + captured_white + " captured pieces = " + (black_terr + captured_white))
+    console.log( "White score: " + white_terr + " territory + " + captured_black + " captured pieces = " + (white_terr + captured_black))
     }
 }
