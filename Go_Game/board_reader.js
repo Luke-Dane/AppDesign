@@ -173,7 +173,7 @@ function countTerritoryPoints(){
   }
   else{
     console.log(liberties);
-    console.log( "Black score: " + black_terr + " territory + " + captured_white + " captured pieces = " + (black_terr + captured_white))
-    console.log( "White score: " + white_terr + " territory + " + captured_black + " captured pieces = " + (white_terr + captured_black))
+    console.log( "Black score: " + black_terr + " territory - " + captured_black + " captured pieces = " + (black_terr - captured_black))
+    console.log( "White score: " + white_terr + " territory - " + captured_white + " captured pieces = " + (white_terr - captured_white))
     }
 }
